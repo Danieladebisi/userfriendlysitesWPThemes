@@ -1,16 +1,17 @@
 <?php get_header(); ?>
 
-<main id="main" class="site-main">
+<div id="content">
     <?php
-    if (have_posts()) :
-        while (have_posts()) : the_post();
-            get_template_part('template-parts/content', get_post_format());
+    if ( have_posts() ) :
+        while ( have_posts() ) : the_post();
+            the_title( '<h2>', '</h2>' );
+            the_content();
         endwhile;
     else :
-        get_template_part('template-parts/content', 'none');
+        echo '<p>No content found</p>';
     endif;
     ?>
-</main>
+</div>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

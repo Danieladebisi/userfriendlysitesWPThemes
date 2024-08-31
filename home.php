@@ -1,28 +1,20 @@
-<?php get_header(); ?>
+<?php
+/*
+Template Name: Home Page
+*/
 
-<div class="hero-section">
+get_header(); ?>
+
+<section id="hero">
     <h1>Welcome to User Friendly Sites</h1>
-    <p>Your partner in building modern, user-friendly websites.</p>
-    <a href="#" class="cta-button">Get Started</a>
-</div>
+    <p>Your partner in building user-friendly, SEO-optimized websites.</p>
+    <a href="<?php echo site_url('/contact'); ?>" class="btn">Get Started</a>
+</section>
 
-<div class="services-section">
+<section id="services">
     <h2>Our Services</h2>
-    <ul>
-        <li>Web Development</li>
-        <li>SEO Optimization</li>
-        <li>Website Management</li>
-    </ul>
-</div>
-
-<div class="testimonials-section">
-    <h2>What Our Clients Say</h2>
-    <!-- Add testimonials here -->
-</div>
-
-<div class="contact-section">
-    <h2>Contact Us</h2>
-    <!-- Add contact form here -->
-</div>
+    <p>We specialize in web development, SEO, and website management.</p>
+    <!-- Add service descriptions here -->
+</section>
 
 <?php get_footer(); ?>
