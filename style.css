@@ -4,7 +4,7 @@ Theme URI: https://userfriendlysites.com
 Author: Daniel
 Author URI: https://userfriendlysites.com
 Description: A clean and modern theme for User Friendly Sites web agency.
-Version: 1.2
+Version: 1.5
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: user-friendly-sites
@@ -296,4 +296,68 @@ header nav ul li a::before {
 
 header nav ul li a:hover::before {
     left: 0;
+}
+
+/* Navbar Container */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #ffde59; /* Navbar background color */
+}
+
+/* Logo Styling */
+.logo img {
+    max-height: 80px;
+}
+
+.logo h1 a {
+    color: #000;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navbar Menu Styling */
+.navbar {
+    display: flex;
+}
+
+.navbar-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+/* Hover Effect */
+.navbar-menu li a:hover {
+    color: #114070; /* Hover color */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+    }
+
+    .navbar-menu li {
+        margin: 10px 0;
+    }
 }

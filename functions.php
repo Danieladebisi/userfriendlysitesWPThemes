@@ -71,3 +71,22 @@ function userfriendlysites_custom_logo_setup() {
 }
 add_action('after_setup_theme', 'userfriendlysites_custom_logo_setup');
 
+function theme_prefix_setup() {
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 300,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+}
+add_action('after_setup_theme', 'theme_prefix_setup');
+
+function register_my_menus() {
+    register_nav_menus(
+        array(
+            'primary-menu' => __( 'Primary Menu' )
+        )
+    );
+}
+add_action( 'init', 'register_my_menus' );
+
