@@ -9,10 +9,21 @@
 <body <?php body_class(); ?>>
 
 <header>
-    <a href="<?php echo home_url(); ?>">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/logo.png" alt="User Friendly Sites">
-    </a>
+    <div class="logo">
+        <?php if ( has_custom_logo() ) {
+            the_custom_logo();
+        } else { ?>
+            <h1><?php bloginfo('name'); ?></h1>
+        <?php } ?>
+    </div>
     <nav>
-        <?php wp_nav_menu( array( 'theme_location' => 'header-menu' ) ); ?>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Case Studies</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">What We Do</a></li>
+        </ul>
     </nav>
 </header>
+
