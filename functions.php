@@ -1,9 +1,7 @@
 <?php
 function user_friendly_sites_setup() {
-    // Add support for featured images
+    // Add support for featured images and title tag
     add_theme_support( 'post-thumbnails' );
-    
-    // Add support for title tag
     add_theme_support( 'title-tag' );
 
     // Register navigation menu
@@ -13,26 +11,50 @@ function user_friendly_sites_setup() {
 }
 add_action( 'after_setup_theme', 'user_friendly_sites_setup' );
 
-function user_friendly_sites_scripts() {
-    // Enqueue style
-    wp_enqueue_style( 'style', get_stylesheet_uri() );
-}
-add_action( 'wp_enqueue_scripts', 'user_friendly_sites_scripts' );
-
-
-// Widget Area
-// Widget Area
-// Widget Area
-// Widget Area
-// Widget Area
-function user_friendly_sites_widgets_init() {
-    register_sidebar( array(
-        'name'          => 'Main Sidebar',
-        'id'            => 'main-sidebar',
-        'before_widget' => '<div class="widget">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="widget-title">',
-        'after_title'   => '</h2>',
+function user_friendly_sites_customize_register( $wp_customize ) {
+    // Add a section for custom theme settings
+    $wp_customize->add_section( 'user_friendly_sites_colors', array(
+        'title'    => __( 'Theme Colors', 'user-friendly-sites' ),
+        'priority' => 30,
     ) );
+
+    // Header Background Color
+    $wp_customize->add_setting( 'header_bg_color', array(
+        'default'   => '#ffde59',
+        'transport' => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'header_bg_color_control', array(
+        'label'    => __( 'Header Background Color', 'user-friendly-sites' ),
+        'section'  => 'user_friendly_sites_colors',
+        'settings' => 'header_bg_color',
+    ) ) );
+
+    // Footer Background Color
+    $wp_customize->add_setting( 'footer_bg_color', array(
+        'default'   => '#000000',
+        'transport' => 'refresh',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'footer_bg_color_control', array(
+        'label'    => __( 'Footer Background Color', 'user-friendly-sites' ),
+        'section'  => 'user_friendly_sites_colors',
+        'settings' => 'footer_bg_color',
+    ) ) );
 }
-add_action( 'widgets_init', 'user_friendly_sites_widgets_init' );
+add_action( 'customize_register', 'user_friendly_sites_customize_register' );
+
+function user_friendly_sites_customize_css() {
+    ?>
+    <style type="text/css">
+        header { background-color: <?php echo get_theme_mod( 'header_bg_color', '#ffde59' ); ?>; }
+        footer { background-color: <?php echo get_theme_mod( 'footer_bg_color', '#000000' ); ?>; }
+    </style>
+    <?php
+}
+add_action( 'wp_head', 'user_friendly_sites_customize_css' );
+
+function user_friendly_sites_service_shortcode( $atts, $content = null ) {
+    return '<div class="service-item">' . $content . '</div>';
+}
+add_shortcode( 'service', 'user_friendly_sites_service_shortcode' );
